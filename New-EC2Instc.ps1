@@ -48,10 +48,10 @@ $userData = @"
 echo "this is test" > /tmp/myTestOutput.txt
 "@
 
- #>
-
 $encodedUserData = [System.Text.Encoding]::UTF8.GetBytes($userData)
 $encodedData = [System.Convert]::ToBase64String($encodedUserData)
+#>
+
 # Create EC2 Instance
 $awsLinuxAmi = 'ami-aa2ea6d0'
 $myNewReservation = New-EC2Instance -ImageId $awsLinuxAmi -KeyName 'svcc2017' `
