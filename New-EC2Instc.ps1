@@ -44,8 +44,10 @@ $myTags = @(
 
 $userData = @"
 !#/bin/bash
-
-apt-get -y install apache2 php libapache2-mod-php php-mcrypt php-mysql
+apt-get update && sudo apt-get -y upgrade
+apt -y install python-setuptools python-pip apache2 php
+pip install --upgrade pip
+pip install awscli
 systemctl restart apache
 aws s3 cp s3://PowerShell-Demo/* /var/www/html
 "@
@@ -58,7 +60,7 @@ $myNewReservation = New-EC2Instance -ImageId $awsLinuxAmi -KeyName 'svcc2017' `
                     -InstanceType 't2.micro' -MinCount 1 -MaxCount 1 `
                     -SecurityGroupId $updatedSG.GroupId `
                     -BlockDeviceMapping $deviceMapping `
-                    -UserData $encodedData
+                    -UserData $encodedData `
                     -InstanceProfile_Name 'EC2Role'
 
 # Apply tags to new instance
