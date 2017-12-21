@@ -42,15 +42,13 @@ $myTags = @(
     @{key="Purpose";value="Webserver"}
 )
 
+<#
 $userData = @"
 !#/bin/bash
-apt-get update && sudo apt-get -y upgrade
-apt -y install python-setuptools python-pip apache2 php
-pip install --upgrade pip
-pip install awscli
-systemctl restart apache
-aws s3 cp s3://PowerShell-Demo/* /var/www/html
+echo "this is test" > /tmp/myTestOutput.txt
 "@
+
+ #>
 
 $encodedUserData = [System.Text.Encoding]::UTF8.GetBytes($userData)
 $encodedData = [System.Convert]::ToBase64String($encodedUserData)
@@ -60,10 +58,8 @@ $myNewReservation = New-EC2Instance -ImageId $awsLinuxAmi -KeyName 'svcc2017' `
                     -InstanceType 't2.micro' -MinCount 1 -MaxCount 1 `
                     -SecurityGroupId $updatedSG.GroupId `
                     -BlockDeviceMapping $deviceMapping `
-                    -UserData $encodedData `
+                    #-UserData $encodedData `
                     -InstanceProfile_Name 'EC2Role'
 
 # Apply tags to new instance
 $myNewReservation.Instances.InstanceId|New-EC2Tag -Tag $myTags
-
-Start-EC2Instance -InstanceId $myNewReservation.Instances.InstanceId
