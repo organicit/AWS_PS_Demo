@@ -17,4 +17,7 @@ Write-S3Object -File C:\Users\Administrator\Documents\www\index.php -BucketName 
 #list all of the files in the bucket
 Get-S3Object -BucketName PowerShell-Demo
 
+# sync local files with bucket 
+aws s3 sync . s3://PowerShell-Demo
+
 #

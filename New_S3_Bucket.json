@@ -1,0 +1,30 @@
+{
+    "AWSTemplateFormatVersion" : "2010-09-09",
+    "Parameters" : {
+      "BucketName": {
+        "Description": "Bucket Name",
+        "Type": "String",
+        "Default": "MyDefaultBucketName"
+      },
+      "AccessCTL": {
+        "Description": "Access Control Option",
+        "Type": "String",
+        "Default": "private"
+      }
+    },
+    "Resources" : {
+        "S3Bucket" : {
+           "Type" : "AWS::S3::Bucket",
+           "Properties" : {
+                "BucketName": { "Ref": "BucketName" },
+                "AccessControl": { "Ref": "AccessCTL" }
+           }
+       }
+    },
+    "Outputs" : {
+        "S3BucketName" : {
+              "Value" : {"Ref": "S3Bucket"},
+              "Description" : "S3 bucket name"
+        }
+    }
+}
