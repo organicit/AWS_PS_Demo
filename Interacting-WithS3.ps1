@@ -20,4 +20,5 @@ Get-S3Object -BucketName PowerShell-Demo
 # sync local files with bucket 
 aws s3 sync . s3://PowerShell-Demo
 
+aws s3 cp ./New_S3_Bucket.json s3://PowerShell-Demo
 #
