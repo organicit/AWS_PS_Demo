@@ -22,3 +22,4 @@ aws s3 sync . s3://PowerShell-Demo
 
 aws s3 cp ./New_S3_Bucket.json s3://PowerShell-Demo
 #
+Remove-S3Bucket -BucketName PowerShell-Demo
