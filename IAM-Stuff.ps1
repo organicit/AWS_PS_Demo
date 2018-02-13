@@ -1,6 +1,8 @@
 $newUsers = "bob","cindy","dave","jean"
 $iamGroup = "NoPerms"
 
+Get-IAMGroup -GroupName $iamGroup
+
 #create users and add users to IAM Group
 foreach ($user in $newUsers) {
     New-IAMUser -UserName $user
@@ -8,5 +10,7 @@ foreach ($user in $newUsers) {
 }
 
 foreach ($user in $newUsers) {
-    Remove-IAMUser -UserName $user
+    #remove user from groups before deleting them
+    Remove-IAMUserFromGroup -GroupName $iamGroup -UserName $user -Force
+    Remove-IAMUser -UserName $user -Force
 }
