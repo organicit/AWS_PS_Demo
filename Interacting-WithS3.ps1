@@ -12,7 +12,7 @@ Import-Module AWSPowershell
 New-S3Bucket -BucketName PowerShell-Demo
 
 # Push php website up to S3
-Write-S3Object -File C:\Users\Administrator\Documents\AWS_PS_DEMO\www\index.php -BucketName PowerShell-Demo
+riteW-S3Object -File C:\Users\Administrator\Documents\AWS_PS_DEMO\www\index.php -BucketName PowerShell-Demo
 
 #list all of the files in the bucket
 Get-S3Object -BucketName PowerShell-Demo
@@ -22,4 +22,4 @@ aws s3 sync . s3://PowerShell-Demo
 
 aws s3 cp ./New_S3_Bucket.json s3://PowerShell-Demo
 #
-Remove-S3Bucket -BucketName PowerShell-Demo
+Remove-S3Bucket -BucketName PowerShell-Demo -DeleteBucketContent -Force
