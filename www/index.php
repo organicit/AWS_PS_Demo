@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>
-    <?php echo "Welcome to my Super PHP Site!"; ?>
+    <?php echo "Hello Portland, and this time I mean it!"; ?>
     </h1>
   </body>
 </html>

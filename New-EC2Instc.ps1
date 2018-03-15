@@ -53,13 +53,13 @@ $encodedData = [System.Convert]::ToBase64String($encodedUserData)
 #>
 
 # Create EC2 Instance
-$awsLinuxAmi = 'ami-aa2ea6d0'
-$myNewReservation = New-EC2Instance -ImageId $awsLinuxAmi -KeyName 'svcc2017' `
+$awsLinuxAmi = 'ami-bf5540df'
+$myNewReservation = New-EC2Instance -ImageId $awsLinuxAmi -KeyName 'aws_centos' `
                     -InstanceType 't2.micro' -MinCount 1 -MaxCount 1 `
-                    -SecurityGroupId $updatedSG.GroupId `
-                    -BlockDeviceMapping $deviceMapping `
+                    -SecurityGroupId 'sg-63d80b1a' `
+                    -BlockDeviceMapping $deviceMapping 
                     #-UserData $encodedData `
-                    -InstanceProfile_Name 'EC2Role'
+                    #-InstanceProfile_Name 'EC2Role'
 
 # Apply tags to new instance
 $myNewReservation.Instances.InstanceId|New-EC2Tag -Tag $myTags

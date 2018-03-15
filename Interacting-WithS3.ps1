@@ -12,7 +12,7 @@ Import-Module AWSPowershell
 New-S3Bucket -BucketName pdxugdemo
 
 # Push php website up to S3
-Write-S3Object -File C:\Users\Administrator\Documents\AWS_PS_DEMO\www\index.php -BucketName pdxugdemo
+Write-S3Object -File /Users/eric/Documents/Development/powershell/AWS_PS_Demo/New_S3_Bucket.json -BucketName pdxugdemo
 
 #list all of the files in the bucket
 Get-S3Object -BucketName pdxugdemo
