@@ -1,7 +1,7 @@
 $newUsers = "bob","cindy","dave","jean"
 $iamGroup = "NoPerms"
 
-Get-IAMGroup -GroupName $iamGroup
+(Get-IAMGroup -GroupName $iamGroup).Users
 
 #create users and add users to IAM Group
 foreach ($user in $newUsers) {
