@@ -1,0 +1,50 @@
+approvals:
+  # PR needs at least 2 approvals
+  minimum: 2
+  # approval = comment that matches this regex
+  pattern: "^(:\\+1:|👍)$"
+  veto:
+    # veto/blocking a PR = comment that matches this regex
+    pattern: "^(:\\-1:|👎)$"
+  # note that `from` is by default empty,
+  # accepting any matching comment as approval
+  from:
+    # commenter must be either one of:
+    orgs:
+      # a public zalando org member
+      # (any org in here counts)
+      - zalando
+    # OR a collaborator of the repo
+    collaborators: true
+    # OR one of these guys
+    users:
+      - prayerslayer
+      - mfellner
+  # you can define groups from which you
+  # require approvals
+  groups:
+    # this defines a "zalando" approver group
+    zalando:
+      # where the approval check will fail if there
+      # is less than 1 approval from it
+      minimum: 1
+      # the group includes every public zalando org member
+      from:
+        orgs:
+          - zalando
+commit:
+  message:
+    # note that there are no default patterns for commit messages
+    patterns:
+      - "^#[0-9]+" # has to begin with hash # and at least one number
+        # OR
+      - "^💩💩💩$" # be three piles of poo
+autobranch:
+  # things in curly brackets are variables that
+  # will be replaced. possible variables:
+  # - number: the issue number
+  # - title: the issue title
+  # - labels: the labels of the issue at opening time
+  pattern: "{number}-{title}"
+  # restrict branch name to maximum this many characters
+  length: 60
